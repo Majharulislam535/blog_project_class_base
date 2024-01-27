@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+       <div class="row">
+
+                 
+            <div class="col-2">
+                 
+               {% for cate in category %}
+               <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="{{cate.id}}">
+                  <label class="form-check-label" for="{{cate.id}}">
+                   
+                    <a href="{% url 'category_wise_post' cate.slug %}"> {{cate.name}}</a>
+                  </label>
+                </div>
+               {% endfor %}
+
+               
+
+
+
+            </div>
+
+
+
+            <div class="col-10">
+               
+               <div class="row">
+
+                  {% for i in post %}
+                       
+        
+                  <div class="col-4">
+                    <div class="card mb-3" style="width:100%;">
+                         <img src="{{i.image.url}}" alt="">
+                        <div class="card-body">
+                          <h5 class="card-title"> <a href="{% url 'details_post' i.id %}">{{i.title}}</a> </h5>
+                          <h6 class="card-subtitle mb-2 text-body-secondary">{{i.author.first_name}}</h6>
+                          <p class="card-text">{{i.content}}</p>
+                           {% for cate in i.category.all %}
+                              <span class="btn btn-warning disabled m-2 btn-sm">{{cate.name}}</span> 
+                           {% endfor %}
+                           <br>
+                        </div>
+                     </div>
+                   </div>
+        
+                  {% endfor %}
+        
+                   
+              </div>
+
+            </div>
+       </div>
+</div>
+
+{% endblock  %}

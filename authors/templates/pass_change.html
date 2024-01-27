@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if messages %}
+{% for ms in messages %}
+<h5>{{ms}}</h5>
+{% endfor %}
+{% endif %}
+
+<form style="width: 50%;margin: auto;" method="post">
+    <h1 class="text-warning"> Change Your Password</h1>
+    {% csrf_token %}
+    {{form | crispy}}
+
+    <!-- {% for fm in form %}
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors }}  
+      {% endfor %} -->
+
+    <button type="submit" class="btn btn-warning">submit</button>
+</form>
+
+
+
+{% endblock %}
